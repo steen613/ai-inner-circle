@@ -1,0 +1,743 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Your AI Inner Circle Setup Guide</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap');
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Inter', Arial, sans-serif;
+      background: #f5f7fa;
+      color: #1a1a2e;
+      font-size: 15px;
+      line-height: 1.7;
+    }
+
+    .page {
+      max-width: 780px;
+      margin: 0 auto;
+      background: white;
+      padding: 60px 64px;
+    }
+
+    /* COVER */
+    .cover {
+      background: linear-gradient(135deg, #0d0d2b 0%, #1a1a4e 60%, #0d1b3e 100%);
+      color: white;
+      text-align: center;
+      padding: 80px 64px;
+      border-radius: 0 0 40px 40px;
+      margin-bottom: 56px;
+    }
+    .cover .badge {
+      display: inline-block;
+      background: rgba(255,255,255,0.12);
+      border: 1px solid rgba(255,255,255,0.25);
+      color: #a8d8ff;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      padding: 6px 18px;
+      border-radius: 20px;
+      margin-bottom: 28px;
+    }
+    .cover h1 {
+      font-size: 42px;
+      font-weight: 800;
+      line-height: 1.15;
+      margin-bottom: 20px;
+      letter-spacing: -0.5px;
+    }
+    .cover h1 span { color: #60b8ff; }
+    .cover p {
+      font-size: 17px;
+      color: rgba(255,255,255,0.75);
+      max-width: 520px;
+      margin: 0 auto 32px;
+    }
+    .cover .sub {
+      font-size: 13px;
+      color: rgba(255,255,255,0.45);
+    }
+
+    /* SECTIONS */
+    h2 {
+      font-size: 26px;
+      font-weight: 800;
+      margin-bottom: 12px;
+      letter-spacing: -0.3px;
+    }
+    h3 {
+      font-size: 17px;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+    p { margin-bottom: 14px; color: #3a3a5c; }
+
+    .section { margin-bottom: 52px; }
+
+    /* CALLOUT BOX */
+    .callout {
+      background: #f0f6ff;
+      border-left: 5px solid #2563eb;
+      border-radius: 0 12px 12px 0;
+      padding: 20px 24px;
+      margin-bottom: 28px;
+    }
+    .callout.green { background: #f0fdf4; border-color: #16a34a; }
+    .callout.yellow { background: #fffbeb; border-color: #d97706; }
+    .callout p { margin-bottom: 0; font-size: 14px; }
+    .callout strong { color: #1a1a2e; }
+
+    /* STEP BOXES */
+    .steps { list-style: none; margin-bottom: 24px; }
+    .steps li {
+      display: flex;
+      gap: 18px;
+      align-items: flex-start;
+      margin-bottom: 20px;
+    }
+    .step-num {
+      min-width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: #1a1a4e;
+      color: white;
+      font-weight: 800;
+      font-size: 15px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-top: 2px;
+    }
+    .step-body h3 { margin-bottom: 4px; }
+    .step-body p { margin-bottom: 6px; font-size: 14px; }
+
+    /* CODE BLOCKS */
+    code {
+      background: #f1f3f8;
+      padding: 2px 8px;
+      border-radius: 5px;
+      font-family: 'Courier New', monospace;
+      font-size: 13px;
+      color: #1e40af;
+    }
+    pre {
+      background: #0f172a;
+      color: #e2e8f0;
+      padding: 20px 24px;
+      border-radius: 12px;
+      font-family: 'Courier New', monospace;
+      font-size: 13px;
+      line-height: 1.8;
+      margin: 12px 0 20px;
+      overflow-x: auto;
+    }
+    pre .comment { color: #64748b; }
+    pre .cmd { color: #7dd3fc; }
+    pre .str { color: #86efac; }
+
+    /* AGENT CARDS */
+    .agent-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+      margin-bottom: 28px;
+    }
+    .agent-card {
+      border-radius: 16px;
+      padding: 24px;
+      border: 1px solid rgba(0,0,0,0.06);
+    }
+    .agent-card.blue   { background: linear-gradient(135deg, #eff6ff, #dbeafe); border-color: #bfdbfe; }
+    .agent-card.gold   { background: linear-gradient(135deg, #fffbeb, #fef3c7); border-color: #fde68a; }
+    .agent-card.purple { background: linear-gradient(135deg, #f5f3ff, #ede9fe); border-color: #ddd6fe; }
+    .agent-card.green  { background: linear-gradient(135deg, #f0fdf4, #dcfce7); border-color: #bbf7d0; }
+    .agent-card .emoji { font-size: 28px; margin-bottom: 10px; }
+    .agent-card h3 { font-size: 15px; margin-bottom: 6px; }
+    .agent-card p { font-size: 13px; margin-bottom: 0; color: #4a4a6a; }
+    .agent-card .tag {
+      display: inline-block;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      padding: 3px 10px;
+      border-radius: 20px;
+      margin-bottom: 10px;
+    }
+    .blue .tag   { background: #bfdbfe; color: #1e40af; }
+    .gold .tag   { background: #fde68a; color: #92400e; }
+    .purple .tag { background: #ddd6fe; color: #5b21b6; }
+    .green .tag  { background: #bbf7d0; color: #14532d; }
+
+    /* CHECKLIST */
+    .checklist { list-style: none; margin-bottom: 20px; }
+    .checklist li {
+      padding: 10px 0;
+      border-bottom: 1px solid #f1f3f8;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 14px;
+      color: #3a3a5c;
+    }
+    .checklist li:last-child { border-bottom: none; }
+    .check { color: #16a34a; font-size: 18px; font-weight: 700; }
+    .box   { color: #cbd5e1; font-size: 18px; }
+
+    /* TABLE */
+    table { width: 100%; border-collapse: collapse; margin-bottom: 24px; font-size: 14px; }
+    th { background: #1a1a4e; color: white; padding: 12px 16px; text-align: left; font-size: 13px; }
+    th:first-child { border-radius: 8px 0 0 0; }
+    th:last-child  { border-radius: 0 8px 0 0; }
+    td { padding: 11px 16px; border-bottom: 1px solid #f1f3f8; color: #3a3a5c; }
+    tr:last-child td { border-bottom: none; }
+    tr:nth-child(even) td { background: #f8fafc; }
+
+    /* DIVIDER */
+    hr { border: none; border-top: 2px solid #f1f3f8; margin: 40px 0; }
+
+    /* FOOTER */
+    .footer {
+      text-align: center;
+      padding: 32px;
+      color: #94a3b8;
+      font-size: 12px;
+      border-top: 1px solid #f1f3f8;
+      margin-top: 48px;
+    }
+
+    /* PRINT */
+    @page {
+      size: A4 portrait;
+      margin: 16mm 15mm 16mm 15mm;
+    }
+
+    @media print {
+      * {
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+      }
+
+      body { background: white; font-size: 12px; line-height: 1.5; }
+
+      .page { max-width: 100%; padding: 0; margin: 0; }
+
+      /* Cover fills exactly one page */
+      .cover {
+        border-radius: 0;
+        height: 100vh;
+        margin: 0;
+        padding: 0 56px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        page-break-after: always;
+        break-after: page;
+      }
+      .cover h1  { font-size: 36px; margin-bottom: 16px; }
+      .cover p   { font-size: 15px; margin-bottom: 24px; }
+      .cover .badge { margin-bottom: 20px; }
+
+      /* Force a clean new page before every Part section */
+      .part {
+        page-break-before: always;
+        break-before: page;
+      }
+
+      /* Keep headings glued to the content that follows */
+      h2 {
+        font-size: 20px;
+        page-break-after: avoid;
+        break-after: avoid;
+        margin-bottom: 10px;
+      }
+      h3 {
+        font-size: 13px;
+        page-break-after: avoid;
+        break-after: avoid;
+        margin-bottom: 6px;
+      }
+
+      /* Never split these mid-element */
+      .callout,
+      .agent-card,
+      .steps li,
+      .checklist li,
+      tr,
+      pre {
+        page-break-inside: avoid;
+        break-inside: avoid;
+      }
+
+      /* Sections: tighten spacing, do NOT avoid breaking inside (sections are too long) */
+      .section { margin-bottom: 18px; }
+
+      hr { margin: 14px 0; }
+
+      /* Agent grid: keep 2 columns, tighter */
+      .agent-grid { grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 16px; }
+      .agent-card { padding: 14px; }
+      .agent-card h3 { font-size: 13px; }
+      .agent-card p  { font-size: 11px; }
+
+      /* Code blocks */
+      pre {
+        white-space: pre-wrap;
+        word-break: break-word;
+        font-size: 10px;
+        line-height: 1.55;
+        padding: 12px 14px;
+        margin: 6px 0 12px;
+      }
+
+      /* Table */
+      table { font-size: 11px; }
+      th, td { padding: 7px 10px; }
+
+      /* Steps */
+      .steps li { margin-bottom: 10px; gap: 12px; }
+      .step-num  { min-width: 28px; height: 28px; font-size: 12px; }
+      .step-body p { font-size: 11px; margin-bottom: 4px; }
+
+      p             { font-size: 12px; margin-bottom: 8px; }
+      .checklist li { padding: 7px 0; font-size: 12px; }
+      .callout p    { font-size: 12px; }
+
+      .footer { padding: 14px; margin-top: 14px; font-size: 11px; }
+    }
+  </style>
+</head>
+<body>
+<div class="page">
+
+  <!-- COVER -->
+  <div class="cover">
+    <div class="badge">Free Step-by-Step Guide</div>
+    <h1>Build Your <span>AI Inner Circle</span><br>From Scratch</h1>
+    <p>How to set up 4 specialized AI "employees" on your computer, built for business and strategy, even if you've never written a line of code</p>
+    <div class="sub">Using Claude Code &middot; Free to start &middot; Works on Mac &amp; Windows</div>
+  </div>
+
+  <!-- WHAT IS THIS -->
+  <div class="section">
+    <h2>What is this guide?</h2>
+    <p>Imagine having 4 specialists on call the moment you open your laptop. None of them sleep, none of them cost a salary, and all of them know your business inside out. One hunts down intelligence. One challenges your thinking before you make a move. One cuts through noise when the pressure is on. One runs your day so nothing falls through the cracks.</p>
+    <p>That is what this guide helps you build, using a free tool called <strong>Claude Code</strong>, made by Anthropic (the same company behind the Claude AI chatbot). No coding experience required.</p>
+
+    <div class="callout">
+      <p><strong>Plain English version:</strong> You are going to set up a special version of Claude AI on your computer that you control completely. Then you will give it 4 different job descriptions, and each one becomes a dedicated specialist you can call on anytime.</p>
+    </div>
+  </div>
+
+  <hr/>
+
+  <!-- WHAT YOU NEED -->
+  <div class="section">
+    <h2>Before you start, what you need</h2>
+
+    <ul class="checklist">
+      <li><span class="check">&#10003;</span> A Mac or Windows computer</li>
+      <li><span class="check">&#10003;</span> An internet connection</li>
+      <li><span class="check">&#10003;</span> An Anthropic account (free to create at claude.ai)</li>
+      <li><span class="box">&#9633;</span> About 30 to 60 minutes of your time</li>
+      <li><span class="box">&#9633;</span> No coding experience needed</li>
+    </ul>
+
+    <div class="callout yellow">
+      <p><strong>Cost:</strong> Claude Code has a free tier. Paid plans start at $20/month, similar to Netflix. For most people starting out, the free tier is enough to experiment.</p>
+    </div>
+  </div>
+
+  <hr/>
+
+  <!-- MEET THE TEAM -->
+  <div class="section">
+    <h2>Meet your 4 specialists</h2>
+    <p>Each one has a name, a role, and a job description you will customize with your own context. Set them up one at a time.</p>
+
+    <div class="agent-grid">
+      <div class="agent-card blue">
+        <div class="tag">Specialist 1</div>
+        <div class="emoji">&#128269;</div>
+        <h3>The Scout: Intel &amp; Research</h3>
+        <p>Hunts down market data, competitor intel, and industry trends. Verifies facts before handing them to you. Like a junior analyst who never clocks out.</p>
+      </div>
+      <div class="agent-card gold">
+        <div class="tag">Specialist 2</div>
+        <div class="emoji">&#129354;</div>
+        <h3>The Sparring Partner: Strategic Advisor</h3>
+        <p>Pushes back. Challenges everything. Stress-tests your moves and tells you what you do not want to hear, before it is too late.</p>
+      </div>
+      <div class="agent-card purple">
+        <div class="tag">Specialist 3</div>
+        <div class="emoji">&#129517;</div>
+        <h3>The Compass: Decision Clarity</h3>
+        <p>Built for pressure. When you are overwhelmed with options, The Compass cuts the noise and gives you a clear YES / NO / WAIT with the reasoning behind it.</p>
+      </div>
+      <div class="agent-card green">
+        <div class="tag">Specialist 4</div>
+        <div class="emoji">&#127911;</div>
+        <h3>The Ops Director: Ops &amp; Execution</h3>
+        <p>Connects to your Gmail and Calendar. Runs your morning briefing. Tracks what needs doing. Makes sure nothing falls through the cracks.</p>
+      </div>
+    </div>
+  </div>
+
+  <hr/>
+
+  <!-- PART 1: INSTALL -->
+  <div class="section part">
+    <h2>Part 1: Install Claude Code</h2>
+    <p>This is the only technical part. Follow these steps exactly and you will be done in under 10 minutes.</p>
+
+    <ul class="steps">
+      <li>
+        <div class="step-num">1</div>
+        <div class="step-body">
+          <h3>Open your Terminal (the black window for typing commands)</h3>
+          <p><strong>On Mac:</strong> Press <code>Command + Space</code>, type Terminal, press Enter.</p>
+          <p><strong>On Windows:</strong> Press the Windows key, type PowerShell, press Enter.</p>
+        </div>
+      </li>
+      <li>
+        <div class="step-num">2</div>
+        <div class="step-body">
+          <h3>Type this command and press Enter</h3>
+          <pre><span class="cmd">npm install -g @anthropic-ai/claude-code</span></pre>
+          <p>If it says "npm not found," you need to install Node.js first. Go to <strong>nodejs.org</strong>, download the installer, and run it. Then come back and try again.</p>
+        </div>
+      </li>
+      <li>
+        <div class="step-num">3</div>
+        <div class="step-body">
+          <h3>Log in to your Anthropic account</h3>
+          <pre><span class="cmd">claude</span></pre>
+          <p>This opens Claude Code for the first time. It will ask you to log in. Use the same account you made at claude.ai and follow the prompts on screen.</p>
+        </div>
+      </li>
+      <li>
+        <div class="step-num">4</div>
+        <div class="step-body">
+          <h3>Test it works</h3>
+          <p>Type this and press Enter:</p>
+          <pre><span class="str">Hello! Are you working?</span></pre>
+          <p>If Claude responds, you are all set. Type <code>/exit</code> to close for now.</p>
+        </div>
+      </li>
+    </ul>
+  </div>
+
+  <hr/>
+
+  <!-- PART 2: WORKSPACE -->
+  <div class="section part">
+    <h2>Part 2: Create your workspace</h2>
+    <p>Think of this like setting up 4 different offices, one for each specialist. Each office has a job description pinned to the wall so your AI knows exactly what role it is playing when you walk in.</p>
+
+    <ul class="steps">
+      <li>
+        <div class="step-num">1</div>
+        <div class="step-body">
+          <h3>Create the main folder and 4 subfolders</h3>
+          <p>In Terminal, type each line and press Enter after each one:</p>
+          <pre><span class="cmd">mkdir ~/ai-inner-circle
+mkdir ~/ai-inner-circle/scout
+mkdir ~/ai-inner-circle/sparring-partner
+mkdir ~/ai-inner-circle/compass
+mkdir ~/ai-inner-circle/ops-director</span></pre>
+          <p>You just created 4 folders on your computer, one per specialist.</p>
+        </div>
+      </li>
+      <li>
+        <div class="step-num">2</div>
+        <div class="step-body">
+          <h3>Open that folder on your computer</h3>
+          <p><strong>On Mac:</strong> Open Finder, go to Home. You will see a folder called <code>ai-inner-circle</code>.</p>
+          <p><strong>On Windows:</strong> Open File Explorer, go to This PC, then Users, then your name. You will see <code>ai-inner-circle</code>.</p>
+        </div>
+      </li>
+    </ul>
+  </div>
+
+  <hr/>
+
+  <!-- PART 3: JOB DESCRIPTIONS -->
+  <div class="section part">
+    <h2>Part 3: Write the job descriptions</h2>
+    <p>Each folder needs a special file called <code>CLAUDE.md</code>. This is the job description your AI reads every time you open that folder. The more detail you put in here, the better your specialist performs.</p>
+    <p>Open any plain text editor (Notepad on Windows, TextEdit on Mac set to plain text). Create a file called <strong>CLAUDE.md</strong>, uppercase exactly like that, inside each folder.</p>
+
+    <div class="callout green">
+      <p><strong>Tip:</strong> Replace anything in [brackets] with your own information. The more personal detail you add, the smarter your AI becomes about your situation.</p>
+    </div>
+
+    <h3 style="margin-top:28px; margin-bottom:12px;">&#128269; The Scout: paste this into scout/CLAUDE.md</h3>
+    <pre><span class="comment"># The Scout: Intel and Research</span>
+
+You are my dedicated intelligence officer. Your job is to find, verify,
+and organize information so I can make smart moves faster.
+
+<span class="comment">## About me and my work</span>
+<span class="str">[Write 2-3 sentences about your industry, what deals or decisions</span>
+<span class="str">you are working on, and what kinds of research you need most often.]</span>
+<span class="str">Example: "I work in business development in the SaaS space. I often need</span>
+<span class="str">competitor breakdowns, market sizing, and background on potential partners."</span>
+
+<span class="comment">## Your job</span>
+- Search the web and bring me facts, not opinions, not filler
+- Cross-check anything important against at least 2 sources
+- Never give me a wall of text. Use bullet points, tables, short summaries
+- End every research task with 3 lines:
+    FOUND: the key insight
+    MISSING: what I could not confirm
+    CONFIDENCE: high / medium / low and why
+
+<span class="comment">## Output rules</span>
+- Lead with the most important finding, not the background
+- Bold the single most important number or fact
+- Always name your sources</pre>
+
+    <h3 style="margin-top:28px; margin-bottom:12px;">&#129354; The Sparring Partner: paste this into sparring-partner/CLAUDE.md</h3>
+    <pre><span class="comment"># The Sparring Partner: Strategic Advisor</span>
+
+You are my strategic sparring partner. You think two moves ahead.
+Your job is not to make me feel good. It is to make me think better.
+
+<span class="comment">## About my situation</span>
+<span class="str">[Write about your current goals, the types of decisions you face most often,</span>
+<span class="str">and how you tend to think. Fast mover? Overthinker? Gut-driven?]</span>
+<span class="str">Example: "I am building a consulting practice. I move fast and sometimes</span>
+<span class="str">commit before I have stress-tested the downside. I need pushback."</span>
+
+<span class="comment">## Your job</span>
+- Ask me at least 2 clarifying questions BEFORE giving advice
+- Run every big idea through 3 internal advisors:
+    The Skeptic: what is the weakest point here?
+    The Realist: what does this actually cost in time, money, relationships?
+    The Opportunist: is there a better version of this move?
+  Debate internally, then present me a summary
+- Tell me what I am not seeing
+
+<span class="comment">## Non-negotiables</span>
+- Never agree with me just to be agreeable
+- If something is a bad idea, say it clearly with a reason
+- Always separate "here is the risk" from "here is my recommendation"</pre>
+
+    <h3 style="margin-top:28px; margin-bottom:12px;">&#129517; The Compass: paste this into compass/CLAUDE.md</h3>
+    <pre><span class="comment"># The Compass: Decision Clarity Under Pressure</span>
+
+You are my decision-clarity specialist. I come to you when I am stuck,
+overwhelmed, or going in circles. Your job is to cut through the noise
+and give me a clear direction, fast.
+
+<span class="comment">## About how I work under pressure</span>
+<span class="str">[Describe what happens when you are overwhelmed. Do you freeze? Overthink?</span>
+<span class="str">Avoid? What kinds of decisions trip you up most?]</span>
+<span class="str">Example: "When I have too many options I stall. I second-guess myself</span>
+<span class="str">on high-stakes moves. I need someone to force me to a decision."</span>
+
+<span class="comment">## Your job</span>
+- First, ask me: "What are you actually trying to decide right now?"
+  Do not let me stay vague. Make me name the real question.
+- Separate URGENT (needs action now) from IMPORTANT (matters long-term).
+  Most people confuse these.
+- Surface the fear or assumption that is keeping me stuck
+- End every session with one of three verdicts:
+    YES: here is why and here is the first step
+    NO: here is why and what to do instead
+    WAIT: here is what you need to know first before deciding
+
+<span class="comment">## Rules</span>
+- Never give me 5 options when I need 1 answer
+- Never validate stalling. If I am avoiding, name it.
+- Short answers beat long ones. Clarity over comfort.</pre>
+
+    <h3 style="margin-top:28px; margin-bottom:12px;">&#127911; The Ops Director: paste this into ops-director/CLAUDE.md</h3>
+    <pre><span class="comment"># The Ops Director: Ops and Execution</span>
+
+You are my Ops Director. You make sure the important things
+actually happen and that nothing slips through the cracks.
+
+<span class="comment">## What I need most</span>
+<span class="str">[List your biggest operational pain points.]</span>
+<span class="str">Example: "I lose track of follow-ups. My inbox controls my day.</span>
+<span class="str">I need a clear 3-item priority list every morning, not 20 tasks."</span>
+
+<span class="comment">## Your job</span>
+- Morning briefing (when I ask): scan my calendar and emails,
+  give me the 3 things I must do today, nothing else
+- Help me draft fast, professional email replies
+- Pull action items from any meeting notes or conversations I paste in
+- Flag anything I said I would do but have not done yet
+
+<span class="comment">## My current top priorities</span>
+<span class="str">[Write your top 3 goals right now, be specific]</span>
+<span class="str">Example: "1. Close the deal with [Company X]</span>
+<span class="str">         2. Launch [project] by end of month</span>
+<span class="str">         3. Build pipeline, need 5 new conversations this week"</span>
+
+<span class="comment">## How I like information</span>
+- Short. Numbered. Actionable.
+- Never give me analysis when I need a next step.</pre>
+  </div>
+
+  <hr/>
+
+  <!-- PART 4: USING YOUR TEAM -->
+  <div class="section part">
+    <h2>Part 4: How to use your team every day</h2>
+    <p>To work with any specialist, you just tell Claude Code which folder to open.</p>
+
+    <ul class="steps">
+      <li>
+        <div class="step-num">1</div>
+        <div class="step-body">
+          <h3>Open Terminal</h3>
+          <p>Same as before, the black window.</p>
+        </div>
+      </li>
+      <li>
+        <div class="step-num">2</div>
+        <div class="step-body">
+          <h3>Navigate to the specialist you want</h3>
+          <pre><span class="comment"># To work with The Scout:</span>
+<span class="cmd">cd ~/ai-inner-circle/scout && claude</span>
+
+<span class="comment"># To work with The Sparring Partner:</span>
+<span class="cmd">cd ~/ai-inner-circle/sparring-partner && claude</span>
+
+<span class="comment"># To work with The Compass:</span>
+<span class="cmd">cd ~/ai-inner-circle/compass && claude</span>
+
+<span class="comment"># To work with The Ops Director:</span>
+<span class="cmd">cd ~/ai-inner-circle/ops-director && claude</span></pre>
+          <p>Claude automatically reads the CLAUDE.md in that folder and becomes that specialist.</p>
+        </div>
+      </li>
+      <li>
+        <div class="step-num">3</div>
+        <div class="step-body">
+          <h3>Just talk to it like a person</h3>
+          <p>No special commands needed. Type like you are texting a colleague:</p>
+          <pre><span class="comment"># The Scout:</span>
+<span class="str">"Give me a breakdown of the top 3 players in [market]: size, positioning, weak spots."</span>
+
+<span class="comment"># The Sparring Partner:</span>
+<span class="str">"I am about to make this move. Hit me with everything wrong with it."</span>
+
+<span class="comment"># The Compass:</span>
+<span class="str">"I have been going back and forth on this for a week. Help me decide."</span>
+
+<span class="comment"># The Ops Director:</span>
+<span class="str">"Morning briefing. Here is what is in my inbox. What are my top 3 today?"</span></pre>
+        </div>
+      </li>
+      <li>
+        <div class="step-num">4</div>
+        <div class="step-body">
+          <h3>When you are done, close the session</h3>
+          <pre><span class="cmd">/exit</span></pre>
+        </div>
+      </li>
+    </ul>
+  </div>
+
+  <hr/>
+
+  <!-- PART 5: POWER MOVES -->
+  <div class="section part">
+    <h2>Part 5: 5 habits that make this 10x more powerful</h2>
+    <p>These 5 habits separate people who get real results from AI from people who just play around with it:</p>
+
+    <table>
+      <thead>
+        <tr><th>#</th><th>Habit</th><th>What it means in practice</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>1</strong></td>
+          <td><strong>Talk, do not type</strong></td>
+          <td>Use your phone voice-to-text to dictate long context. Just talk your thoughts and paste the transcript in. Your messy thinking is valuable input.</td>
+        </tr>
+        <tr>
+          <td><strong>2</strong></td>
+          <td><strong>Brain dump first</strong></td>
+          <td>Start every session by pasting in context: who you are, what is happening, what you are trying to do. The more it knows about your situation, the better its answers.</td>
+        </tr>
+        <tr>
+          <td><strong>3</strong></td>
+          <td><strong>Let it interview you</strong></td>
+          <td>Before asking for help, type: "Ask me 5 questions about this before we start." This stops it from giving generic advice and forces it to understand your specifics.</td>
+        </tr>
+        <tr>
+          <td><strong>4</strong></td>
+          <td><strong>Plan before you act</strong></td>
+          <td>For anything important, ask it to outline the plan first and show you before doing anything. Type <code>/plan</code> before a big task to review the approach.</td>
+        </tr>
+        <tr>
+          <td><strong>5</strong></td>
+          <td><strong>You stay in charge</strong></td>
+          <td>AI handles the drafts, research, and thinking. You make the final call, always. Review everything before it goes anywhere. Never automate something you have not tested manually first.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <hr/>
+
+  <!-- COMMON QUESTIONS -->
+  <div class="section">
+    <h2>Common questions</h2>
+
+    <h3 style="margin-bottom:6px;">Is this safe? Who sees my conversations?</h3>
+    <p>Your conversations stay between you and Anthropic. Nothing is shared publicly. Read Anthropic's privacy policy at anthropic.com for full details. Do not paste passwords or financial account numbers.</p>
+
+    <h3 style="margin-top:24px; margin-bottom:6px;">What if I make a mistake setting it up?</h3>
+    <p>You cannot break anything. If something is not working, delete the CLAUDE.md file and rewrite it. Everything is just text files, nothing is permanent.</p>
+
+    <h3 style="margin-top:24px; margin-bottom:6px;">Can I add more context later?</h3>
+    <p>Yes. Just open the CLAUDE.md file in any text editor and add more information. The more context you add over time, the smarter each specialist becomes about your world.</p>
+
+    <h3 style="margin-top:24px; margin-bottom:6px;">Can these specialists talk to each other?</h3>
+    <p>Yes. As you get more comfortable, you can ask one specialist to hand off work to another. For example: "Take this research and pass it to the Sparring Partner for a strategic read." This is called multi-agent work and it is where things get really powerful.</p>
+  </div>
+
+  <hr/>
+
+  <!-- QUICK START CHECKLIST -->
+  <div class="section">
+    <h2>Your Quick-Start Checklist</h2>
+
+    <ul class="checklist">
+      <li><span class="box">&#9633;</span> Create an account at claude.ai</li>
+      <li><span class="box">&#9633;</span> Install Claude Code (the npm command from Part 1)</li>
+      <li><span class="box">&#9633;</span> Log in and confirm Claude responds to "Hello"</li>
+      <li><span class="box">&#9633;</span> Create the 4 folders (scout, sparring-partner, compass, ops-director)</li>
+      <li><span class="box">&#9633;</span> Write your CLAUDE.md job description for one specialist</li>
+      <li><span class="box">&#9633;</span> Open that specialist and have your first conversation</li>
+      <li><span class="box">&#9633;</span> Use it for one real task this week before adding more</li>
+      <li><span class="box">&#9633;</span> Once it works, add the other 3 specialists one at a time</li>
+    </ul>
+
+    <div class="callout">
+      <p><strong>The rule:</strong> Start with The Compass or The Sparring Partner, whichever solves your biggest pain right now. Use it for a full week. Then add the next one. One specialist that actually runs beats four that are half-built.</p>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="footer">
+    <p>Created by <strong>Leif Steen</strong> &nbsp;&middot;&nbsp; Built with Claude Code by Anthropic</p>
+    <p style="margin-top:8px;">Claude Code: claude.ai/code &nbsp;&middot;&nbsp; <a href="https://www.linkedin.com/in/leif-steen/" style="color:#60a5fa;">Connect with Leif on LinkedIn</a></p>
+  </div>
+
+</div>
+</body>
+</html>
